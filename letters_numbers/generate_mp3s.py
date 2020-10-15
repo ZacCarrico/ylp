@@ -8,7 +8,8 @@ def generate_mp3s():
     #     tts.save(str(number) + ".mp3")
     # tts = gTTS("correct", lang='en', slow=False)
     # tts.save("correct.mp3")
-    tts = gTTS("that is not correct.", lang='en', slow=False)
-    tts.save("that_is_not_correct.mp3")
+    tts = gTTS("Type a letter if you want to play the letter game or "
+               "type a number if you want to play the number game", lang='en', slow=False)
+    tts.save("choose_char.mp3")
 
 generate_mp3s()
