@@ -1,6 +1,7 @@
 import random
 import string
 import time
+import getch
 from playsound import playsound
 
 class Game:
@@ -14,7 +15,7 @@ class Game:
 
     def choose_char_type(self):
         playsound("./letters_numbers/mp3/choose_char.mp3")
-        value = input(">>>")
+        value = getch.getch()
         if value in self.game_opts['letters']:
             self.typing_game('letters')
         elif value in self.game_opts['numbers']:
@@ -24,15 +25,18 @@ class Game:
 
         for char in self.game_opts[game_type]:
             playsound(f"./letters_numbers/mp3/{game_type}/{char}.mp3")
-            value = input(">>>")
+            value = getch.getche()
+            print("")
             if value != char:
                 incorrect_count = 0
                 while value != char:
                     incorrect_count += 1
                     playsound("./letters_numbers/mp3/responses/that_is_not_correct.mp3")
+                    playsound(f"./letters_numbers/mp3/{game_type}/{char}.mp3")
                     if incorrect_count % 5 == 0:
                         playsound("./letters_numbers/mp3/responses/pausing.mp3")
                         time.sleep(5)
-                    value = input(">>>")
+                    value = getch.getche()
+                    print("")
             playsound("./letters_numbers/mp3/responses/correct.mp3")
             playsound("./letters_numbers/mp3/responses/congratulations.mp3")
